@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-A payment application - similar to <a href="https://venmo.com/" target="_break">Venmo</a> -for use as an 'application under test' for creating automated test scripts.
+A payment application - similar to <a href="https://venmo.com/" target="_break">Venmo</a> - for use as an 'application under test' when creating automated test scripts.
 </p>
 
 <p align="center">
@@ -21,7 +21,7 @@ A payment application - similar to <a href="https://venmo.com/" target="_break">
 
 > 💬 **Note for testers**
 >
-> This application is a snapshot of the <a href="https://github.com/cypress-io/cypress-realworld-app" target="_break">Cypress Real World App</a>, fixed to ensure a stable application to learn, experiment, tinker, and practice application testing. Huge thanks to Cypress for providing and maintaining this application!
+> This application is a snapshot of the <a href="https://github.com/cypress-io/cypress-realworld-app" target="_break">Cypress Real World App</a>, customised to ensure a stable application to learn, experiment, tinker, and practice application testing. Huge thanks to Cypress for providing and maintaining this application!
 
 ---
 
@@ -111,6 +111,10 @@ PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true yarn install
 yarn dev
 ```
 
+If the `yarn dev` command looks to have started the app correctly you can test it's working by opening a browser and entering this url:<br>
+<a href="http://localhost:3000/" target="_break">http://localhost:3000/</a>
+
+
 > 🚩 **Note**
 >
 > The app will run on port `3000` (frontend) and `3001` (API backend) by default. Please make sure there are no other applications or services running on both ports.
@@ -122,11 +126,13 @@ yarn dev
 
 - The local JSON database is located in [data/database.json](./data/database.json) and is managed with [lowdb].
 
-- The database is [reseeded](./data/database-seed.json) each time the application is started (via `yarn dev`).
+- You can login to the app with any of the [example app users](./data/database.json#L2). The default password for all users is `s3cret`.
+
+- The database is [reset](./data/database-seed.json) each time the application is started (via `yarn dev`), so any data created by previous test script execution will be lost.
 
 - Updates via the React frontend are sent to the [Express][express] server and handled by a set of [database utilities](backend/database.ts)
 
-- Generate a new database using `yarn db:seed`.
+- Generate a completely new database using `yarn db:seed`, however note new users will be created and test script login will be affected.
 
 - An [empty database seed](./data/empty-seed.json) is provided along with a script (`yarn start:empty`) to view the application without data.
 
